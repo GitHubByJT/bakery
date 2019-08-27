@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.bakery.mapper.ShopMapper">
+
+    <resultMap id="shop_result_map" type="com.vip.bakery.domain.entity.Shop">
+        <id column="shop_id" property="shopId"/>
+        <result column="shop_name" property="shopName"/>
+        <result column="shop_image" property="shopImage"/>
+        <result column="detail_image" property="detailImage"/>
+        <result column="price" property="price"/>
+        <result column="intro" property="intro"/>
+        <result column="stock" property="stock"/>
+        <result column="sub_menu_id" property="subMenuId"/>
+    </resultMap>
+
+    <resultMap id="detail_result_map" type="com.vip.bakery.domain.vo.DetailVo" extends="shop_result_map">
+        <id column="car_id" property="carId"/>
+        <result column="number" property="number"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="uid" property="uid"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="shop_result_map">
+        SELECT *
+        FROM shop;
+    </select>
+
+    <select id="findByShopId" resultMap="shop_result_map">
+        SELECT *
+        FROM shop
+        WHERE shop.shop_id = #{shopId}
+    </select>
+
+</mapper>
